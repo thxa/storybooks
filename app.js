@@ -3,7 +3,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const morgan = require('morgan')
-const exphbs = require('express-handlebars')
+const {engine} = require('express-handlebars')
 const methodOverride = require('method-override')
 const passport = require('passport')
 const session = require('express-session')
@@ -52,8 +52,8 @@ const {
 
 // Handlebars
 app.engine(
-  '.hbs',
-  exphbs({
+  'hbs',
+  engine({
     helpers: {
       formatDate,
       stripTags,
@@ -77,6 +77,7 @@ app.use(
   })
 )
 
+
 // Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
@@ -99,5 +100,5 @@ const PORT = process.env.PORT || 3000
 
 app.listen(
   PORT,
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port http://localhost:${PORT}`)
 )
